@@ -1,0 +1,27 @@
+<div >
+    
+<div class="imgContainer">
+    <img class="img" [src]="itemData.images[0]" alt="poki">
+    <h3> {{itemData.title}}</h3>
+</div>
+<div style="display: flex;justify-content: space-between;margin: 10px 8px;">
+    <h5 style="background-color: rgb(28, 58, 1);">{{itemData.category}}</h5>
+    <h5 style="background-color: rgb(2, 87, 69);">{{itemData.brand}}</h5>
+</div>
+<div  style="display: flex;justify-content: space-between;margin: 10px 8px;">
+    <p [ngStyle]="{'color':itemData.stock<10?'red':itemData.stock<30?'orange':'yellow'}" style="background-color: rgb(51, 1, 58);">Stock: {{itemData.stock}}</p>
+    <p style="background-color: rgb(2, 59, 87);">Price: {{itemData.price}}$</p>
+</div>
+<div>
+<p>{{extend? itemData.description:text}} <span><button (click)="extend=!extend" style="background-color: rgb(47, 46, 46);">{{extend?"ReadLess":"ReadMore"}}</button></span></p>
+<p style="color: cyan;">Status: {{itemData.availabilityStatus}}</p>
+<div style="text-align: center;" class="">
+    <button (click)="al()" style="color: white;
+                   background: orange;
+                   width: 80%;
+                   height: 40px;">
+        Add To Cart
+    </button>
+</div>
+</div>
+</div>

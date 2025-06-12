@@ -1,0 +1,17 @@
+.imgContainer{
+    text-align: center;
+
+}
+img{
+    width: 80%;
+}
+@media (min-width:1000px) {
+    img{
+        width: 60%;
+    }
+}
+@media (min-width:2000px) {
+    img{
+        width: 40%;
+    }
+}

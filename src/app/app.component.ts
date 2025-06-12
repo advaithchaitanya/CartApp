@@ -1,12 +1,74 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import {products} from '../data'
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { DisplayProductsComponent } from './display-products/display-products.component';
+import { CustumDirective } from './custum.directive';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,CommonModule,FormsModule,DisplayProductsComponent,CustumDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent{
+  side=false
   title = 'CartApp';
+  search=""
+  selectedCategory:string="All";
+  dataProducts: {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    brand: string;
+    availabilityStatus: string;
+    stock: number;
+    images: string[];
+}[]=products; 
+change(){
+  this.selectedCategory="All"
+  this.filterProducts()
 }
+filterWritten(){
+  this.data=this.dataProducts.filter(i=>{
+    return i.title.includes(this.search) || i.description.includes(this.search)
+  })
+}
+ngOnChanges(){
+
+}
+data:{
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    brand: string;
+    availabilityStatus: string;
+    stock: number;
+    images: string[];
+}[]=[];
+
+filterProducts():void{
+  if (this.selectedCategory==='All'){
+    this.data=this.dataProducts
+    return;
+  }
+  this.data=this.dataProducts.filter(i=>i.availabilityStatus===this.selectedCategory)
+}
+scrolled=false
+@HostListener('window:scroll',[])
+onWindowSroll(){
+  this.scrolled=window.scrollY>0
+}
+ngOnInit(): void {
+  this.filterProducts()
+  this.data=products;
+  console.log(this.data)
+}
+  
+}
+
