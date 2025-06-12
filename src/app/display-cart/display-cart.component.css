@@ -3,7 +3,6 @@
 
 }
 img{
-    filter: drop-shadow(5px 5px 20px rgb(60, 38, 66));
     width: 80%;
 }
 @media (min-width:1000px) {
@@ -23,6 +22,19 @@ img{
     right: 0;
 }
 .addBtn:hover{
-   border:3px solid;
-    rotate:90deg;
+    rotate:70deg;
+}
+
+.delButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: black;
+    background: orange;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.6s;
+}
+.delButton:hover{
+    border:3px solid white;
 }

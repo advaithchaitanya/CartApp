@@ -1,10 +1,11 @@
 <div class="">
   <div class="">
+    
   <nav [ngClass]="scrolled? 'onScroll':''">
     <div class="nav-details">
       <div class="logo">
         <img src="https://imgs.search.brave.com/4NZpKxvbnzI-GIW7Wp_VZGUvm_Qz7qIWzQXp8MZLmcY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nbWFydC5jb20v/ZmlsZXMvQW1hem9u/LUxvZ28tUE5HLUlt/YWdlLnBuZw" alt="">
-        <h1><span>Logo</span></h1>
+        <h1><span>Mini Cart Applicatin</span></h1>
       </div>
       <div class="anchors">
         <li><a href="">Home</a></li>
@@ -17,18 +18,22 @@
   </nav>
 
 <router-outlet></router-outlet>
-
+<!-- <div class="alert" >
+  <h1>Hello </h1>
+</div> -->
 <div class="hero">
+
   <div class="sideCart" [ngClass]="side ? 'side':''">
     <div (click)="side=!side" class="initial" >
-      Cart
+      {{side ? "Close Cart": "ViewCart"}}
     </div>
     
     <div class="displayCarty">
+      <h1 style="font-size: 5rem;text-align: center;margin: 50% auto;" *ngIf="cart.cartList.length===0">Empty</h1>
       <div class="displayGrid">
-        <app-display-products appCustum [itemData]="item" class="gridItem" *ngFor="let item of data">
+        <app-display-cart appCustum [cartItem]="item" class="gridItem" *ngFor="let item of cart.cartList">
           
-        </app-display-products>
+        </app-display-cart>
       </div>
     </div>
   </div>
@@ -40,7 +45,7 @@
           Search Product :
         </h3>
         <input (input)="filterWritten()" (focus)="change()" [(ngModel)]="search" type="text" id="search">
-        <p class="searchPara">Searching results for <span style="color:rgb(12, 197, 253);">{{search!==""?search:"nothing"}}</span></p>
+        <p class="searchPara">Searching results for <span style="color:rgb(2, 28, 35);">{{search!==""?search:"nothing"}}</span></p>
       </div>
     </div>
     <div class="display">

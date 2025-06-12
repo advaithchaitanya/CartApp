@@ -1,8 +1,8 @@
 *{
     margin: 0px;
     padding: 0px;
-    
 }
+
 nav{
     
     background-color: black;
@@ -10,7 +10,7 @@ nav{
     margin: 0px;
     display: flex;
     color: #fff;
-    z-index: 60;
+    z-index: 100;
 }
 .onScroll{
     backdrop-filter: blur(15px);
@@ -77,7 +77,7 @@ nav li{
     border:solid white 1px;
 }
 .hero{
-    background: rgb(44, 0, 77);
+    background: linear-gradient(to top right,red,orange,red,orange);
     min-height:100vh;
     margin: auto;
     padding:  auto;
@@ -121,14 +121,17 @@ nav li{
     border: solid 1px white;
     margin: 15px auto;
     border-radius: 12px;
-    min-height: 50vh;
+    
 }
 .displayGrid{
+    margin: 50px auto;
     display: grid;
+    align-items: center;
     grid-template-columns: repeat(3,1fr);
-    gap: 10px;
+    gap: 20px;
+    /* padding: 30px; */
     width: 90%;
-    margin: auto;
+   
     
 }
 @media  (max-width:900px) {
@@ -136,6 +139,7 @@ nav li{
         grid-template-columns: repeat(2,1fr);
 
     }
+
 }
 @media  (max-width:600px) {
     .displayGrid{
@@ -146,17 +150,20 @@ nav li{
 
 .gridItem{
     
-    background: #000;
+    background:rgba(255, 0, 0, 0.715);
     width: 100%;
     border: solid rgb(34, 0, 47);
+    box-shadow: 8px 8px 0px black;
     margin: auto;
-    aspect-ratio: 2/3;
+    backdrop-filter: blur(16px);
+    /* aspect-ratio: 2/3; */
+    padding:50px 0px;
     transition: all 0.6s;
-    border-radius: 8px;
+    border-radius: 16px;
 
 }
 .add{
-    scale: 1.1;
+    transform: translateY(-5%);
     z-index: 9;
 }
 /* .gridItem:hover{
@@ -165,11 +172,12 @@ nav li{
 .sideCart{
     position: fixed;
     /* top: 30%; */
-    top: 7%;
-    right: 0;
+    top: 6%;
+    right: -1%;
     transform: translateX(90%);
     display: flex;
     transition: all 0.6s;
+    z-index: 99;
 }
 .initial{
     width: 10%;
@@ -179,10 +187,11 @@ nav li{
     background: #000;
     height: 100vh;
     cursor: pointer;
+    z-index: 99;
 }
 .side{
     transform: translateX(0%);
-    z-index: 999;
+    z-index: 99;
 }
 .displayCarty{
     height: 100vh;
@@ -190,4 +199,29 @@ nav li{
 
     backdrop-filter: blur(15px);
     overflow-y: scroll;
+}
+/* .alert{
+    position: absolute;
+
+    
+    z-index: 999;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   width: 50%;
+   left: 25%;
+   background: purple;
+   
+}
+.onadd{
+    transition: all 0.6s;
+   transform: translateY(-150%);
+   animation: alert 1s 1s ease-in-out alternate;
+} */
+@keyframes alert {
+    to{
+        transform: translateY(0%);  
+    }
+    
 }

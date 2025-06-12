@@ -26,9 +26,11 @@ export class DisplayProductsComponent implements OnInit{
 text:string=""
 extend:boolean=false;
 ngOnInit(): void {
-  this.text=this.itemData.description.slice(0,40)+"...."
+  this.text=this.itemData.description.slice(0,60)+"...."
 }
 al(){
-  alert('Clicked')
+  
+  this.cart.addToCart(this.itemData)
+  console.log(this.cart.cartList)
 }
 }

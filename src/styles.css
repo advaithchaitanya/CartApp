@@ -6,6 +6,9 @@
     font-family: 'Bree Serif';
     color: white;
 }
+body{
+    position: relative;
+}
 a{
     color: black;
 }
