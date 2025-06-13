@@ -7,6 +7,8 @@ import { DisplayProductsComponent } from './display-products/display-products.co
 import { CustumDirective } from './custum.directive';
 import { DisplayCartComponent } from './display-cart/display-cart.component';
 import { CartService } from './cart.service';
+import { ProductsService } from './products.service';
+import { ProductModule } from './product/product.module';
 
 @Component({
   selector: 'app-root',
@@ -16,14 +18,15 @@ import { CartService } from './cart.service';
 })
 export class AppComponent implements OnInit{
   
-  constructor(public cart: CartService) {}
+  constructor(public cart: CartService,public productService:ProductsService) {}
   
-  
+      
   side=false
   title = 'CartApp';
   search=""
   selectedCategory:string="All";
-  cartItem!: {
+
+  dataProducts!: {
     id: number;
     title: string;
     price: number;
@@ -33,18 +36,7 @@ export class AppComponent implements OnInit{
     availabilityStatus: string;
     stock: number;
     images: string[];
-}[];
-  dataProducts: {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    brand: string;
-    availabilityStatus: string;
-    stock: number;
-    images: string[];
-}[]=products; 
+}[]; 
 change(){
   this.selectedCategory="All"
   this.filterProducts()
@@ -81,11 +73,33 @@ scrolled=false
 onWindowSroll(){
   this.scrolled=window.scrollY>0
 }
+products: {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    brand: string;
+    availabilityStatus: string;
+    stock: number;
+    images: string[];
+}[] = [];
+
 ngOnInit(): void {
-  this.filterProducts()
-  this.data=products;
-  console.log(this.data)
-  this.cartItem=this.cart.cartList
+  this.productService.getProducts().subscribe({
+    next: (data) => {
+      this.products = data;
+      this.dataProducts = data;
+      this.filterProducts();
+      this.data = this.dataProducts;
+      console.log(this.products);
+      console.log(this.data);
+    },
+    error: (err: any) => {
+      console.error('err', err);
+    }
+  });
+  
 }
   
 }
